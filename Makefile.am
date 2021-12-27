@@ -39,6 +39,10 @@ if OS_WINDOWS
 SUBDIRS += windows
 endif
 
+if OS_OS2
+SUBDIRS += libusb
+endif
+
 SUBDIRS += hidtest
 
 if BUILD_TESTGUI
