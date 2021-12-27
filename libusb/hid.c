@@ -51,7 +51,7 @@
 
 #include "hidapi_libusb.h"
 
-#if defined(__ANDROID__) && __ANDROID_API__ < __ANDROID_API_N__
+#if defined(__ANDROID__) && __ANDROID_API__ < __ANDROID_API_N__ || defined(__OS2__)
 
 /* Barrier implementation because Android/Bionic don't have pthread_barrier.
    This implementation came from Brent Priddy and was posted on
@@ -110,6 +110,24 @@ static int pthread_barrier_wait(pthread_barrier_t *barrier)
 	}
 }
 
+#endif
+
+#if defined(__OS2__) && !defined(wcsdup)
+#include <wchar.h>
+#include <string.h>
+#include <stdlib.h>
+
+/* Duplicate S, returning an identical malloc'd string.	 */
+wchar_t* wcsdup(const wchar_t *s)
+{
+	size_t len = (wcslen (s) + 1) * sizeof (wchar_t);
+	void *new = malloc (len);
+
+	if (new == NULL)
+		return NULL;
+
+	return (wchar_t *) memcpy (new, (void *) s, len);
+}
 #endif
 
 #ifdef __cplusplus
