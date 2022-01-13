@@ -145,6 +145,7 @@ case $host in
 	backend="libusb"
 	os="os2"
 	threads="pthreads"
+	CFLAGS="$CFLAGS -DNO_ICONV"
 
 	PKG_CHECK_MODULES([libusb], [libusb-1.0 >= 1.0.9], true, [hidapi_lib_error libusb-1.0])
 	LIBS_LIBUSB_PRIVATE="${LIBS_LIBUSB_PRIVATE} $libusb_LIBS"
