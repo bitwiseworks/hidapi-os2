@@ -112,7 +112,7 @@ static int pthread_barrier_wait(pthread_barrier_t *barrier)
 
 #endif
 
-#if defined(__OS2__) && !defined(wcsdup)
+#ifndef HAVE_WCSDUP
 #include <wchar.h>
 #include <string.h>
 #include <stdlib.h>

@@ -153,6 +153,7 @@ case $host in
 *)
 	AC_MSG_ERROR([HIDAPI is not supported on your operating system yet])
 esac
+AC_CHECK_FUNCS([WCSDUP])
 
 LIBS_HIDRAW="${LIBS} ${LIBS_HIDRAW_PR}"
 LIBS_LIBUSB="${LIBS} ${LIBS_LIBUSB_PRIVATE}"
